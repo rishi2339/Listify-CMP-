@@ -1,0 +1,10 @@
+{
+  "code": "200",
+  "message": "Login Successfully",
+  "data": {
+      "Token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkZDMTkwNThAYXhpc2JhbmsuY29tIiwiaWF0IjoxNjg3NzYwODk1NDY5fQ.013AAmpeIJZod0RlNlW7JF3SAa-rK79123WZlJy43k0",
+      "Name": "rishika",
+      "Email": "rishi@gmail.com",
+      "Id": "6499286651465"
+  }
+}
