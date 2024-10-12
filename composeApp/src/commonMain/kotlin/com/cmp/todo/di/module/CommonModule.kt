@@ -28,7 +28,7 @@ val provideRepositoryModule = module {
     single { LoginApi(get()) }
     single<RegisterRepository> { RegisterRepositoryImp(get()) }
     single { RegisterApi(get()) }
-    single<ToDoListRepository> { ToDoListRepositoryImpl(get()) }
+    single<ToDoListRepository> { ToDoListRepositoryImpl(get(),get()) }
     single { ToDoApi(get()) }
     single { SettingsRepository(get()) }
 }

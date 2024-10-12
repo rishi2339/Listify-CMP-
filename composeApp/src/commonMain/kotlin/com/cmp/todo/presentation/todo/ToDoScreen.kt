@@ -45,6 +45,7 @@ import cafe.adriel.voyager.core.screen.uniqueScreenKey
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import com.cmp.todo.domain.todo.entity.ToDo
 import com.cmp.todo.presentation.login.LoginScreenKoin
 import com.cmp.todo.util.ResourceUiState
 import kotlinx.coroutines.flow.collectLatest
@@ -235,15 +236,15 @@ fun TodoInputBar(
             Spacer(modifier = Modifier.width(16.dp))
         }
     }
-//    if (isToDoAdded) {
-//        toDoModel.insertToDo(
-//            ToDo(
-//                title = input.value,
-//                completed = false,
-//                userId = 3
-//            )
-//        )
-//        isToDoAdded = false
-//        toDoModel.getTodo()
-//    }
+    if (isToDoAdded) {
+        toDoModel.insertToDo(
+            ToDo(
+                title = input.value,
+                completed = false,
+                userId = 3
+            )
+        )
+        isToDoAdded = false
+        toDoModel.getTodo()
+    }
 }

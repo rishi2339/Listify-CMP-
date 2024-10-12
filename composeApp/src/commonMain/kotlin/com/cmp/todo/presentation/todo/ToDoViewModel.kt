@@ -55,11 +55,11 @@ class ToDoViewModel(
         }
     }
 
-//    @Composable
-//    fun insertToDo(toDo: ToDo) {
-//        val viewModelCoroutineScope = rememberCoroutineScope()
-//        viewModelCoroutineScope.launch {
-//            toDoUseCase.insertToDoExecute(toDo)
-//        }
-//    }
+    @Composable
+    fun insertToDo(toDo: ToDo) {
+        val viewModelCoroutineScope = rememberCoroutineScope()
+        viewModelCoroutineScope.launch {
+            toDoUseCase.insertToDoExecute(toDo)
+        }
+    }
 }

@@ -1,5 +1,6 @@
 package com.cmp.todo.di
 
+import com.cmp.todo.di.module.provideCacheModule
 import com.cmp.todo.di.module.provideRepositoryModule
 import com.cmp.todo.di.module.provideUseCaseModule
 import com.cmp.todo.di.module.provideViewModelModule
@@ -17,6 +18,7 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
 
 fun appModule() = listOf(
     platformModule(),
+    provideCacheModule,
     providehttpClientModule,
     provideRepositoryModule,
     provideUseCaseModule,

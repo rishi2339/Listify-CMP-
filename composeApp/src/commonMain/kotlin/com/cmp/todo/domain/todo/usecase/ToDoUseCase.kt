@@ -13,7 +13,7 @@ class ToDoUseCase(
     suspend fun getToDoExecute(): Flow<BaseResult<ToDoEntity, ToDoResponseDto>> {
         return toDoListRepository.getToDos(false)
     }
-//    suspend fun insertToDoExecute(toDo: ToDo) {
-//        return toDoListRepository.addToDo(toDo)
-//    }
+    suspend fun insertToDoExecute(toDo: ToDo) {
+        return toDoListRepository.addToDo(toDo)
+    }
 }
