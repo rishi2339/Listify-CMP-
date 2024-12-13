@@ -1,5 +1,6 @@
 package com.cmp.todo.presentation.login
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -8,8 +9,17 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Button
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Card
+import androidx.compose.material.Icon
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.Button
+import androidx.compose.material.TextButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -102,72 +112,93 @@ fun loginScreen(
             errorText = loginScreenModel.error.value
         }
     }
-    Column(
-        modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(horizontal = 16.dp),
+        contentAlignment = Alignment.Center
     ) {
-        Text(
-            text = "Login",
-            fontSize = 28.sp,
-            fontWeight = FontWeight.Bold,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.fillMaxWidth().padding(vertical = 32.dp)
-        )
-
-        OutlinedTextField(
-            value = email,
-            onValueChange = { email = it },
-            label = { Text("Email") },
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Email,
-                imeAction = ImeAction.Next
-            ),
-            modifier = Modifier.fillMaxWidth()
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        OutlinedTextField(
-            value = password,
-            onValueChange = { password = it },
-            label = { Text("Password") },
-            visualTransformation = PasswordVisualTransformation(),
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Password,
-                imeAction = ImeAction.Done
-            ),
-            modifier = Modifier.fillMaxWidth()
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        if (errorText.isNotEmpty()) {
-            Text(
-                text = errorText,
-                color = Color.Red,
-                modifier = Modifier.padding(bottom = 16.dp)
-            )
-        }
-        Button(
-            onClick = {
-                isLoggedIn.value = true
-            },
-            modifier = Modifier.fillMaxWidth()
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
+                text = "Login",
+                fontSize = 32.sp,
+                fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
-                text = "Log in",
                 modifier = Modifier
                     .fillMaxWidth()
+                    .padding(vertical = 24.dp)
             )
-        }
-        Spacer(modifier = Modifier.height(16.dp))
-        Box(
-            contentAlignment = Alignment.BottomCenter
-        ) {
+
+            OutlinedTextField(
+                value = email,
+                onValueChange = { email = it },
+                label = { Text("Email") },
+                leadingIcon = {
+                    Icon(imageVector = Icons.Default.Email, contentDescription = null)
+                },
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Email,
+                    imeAction = ImeAction.Next
+                ),
+                modifier = Modifier.fillMaxWidth()
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            OutlinedTextField(
+                value = password,
+                onValueChange = { password = it },
+                label = { Text("Password") },
+                leadingIcon = {
+                    Icon(imageVector = Icons.Default.Lock, contentDescription = null)
+                },
+                visualTransformation = PasswordVisualTransformation(),
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Password,
+                    imeAction = ImeAction.Done
+                ),
+                modifier = Modifier.fillMaxWidth()
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            if (errorText.isNotEmpty()) {
+                Card(
+                    backgroundColor = Color(0xFFFFCDD2),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(
+                        text = errorText,
+                        color = Color(0xFFD32F2F),
+                        modifier = Modifier.padding(8.dp),
+                        textAlign = TextAlign.Center
+                    )
+                }
+                Spacer(modifier = Modifier.height(16.dp))
+            }
+
             Button(
+                onClick = {
+                    isLoggedIn.value = true
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(48.dp),
+                colors = ButtonDefaults.buttonColors(
+                    backgroundColor = MaterialTheme.colorScheme.primary
+                ),
+                shape = RoundedCornerShape(8.dp)
+            ) { Text(text = "Log in", color = Color.White) }
+            Spacer(modifier = Modifier.height(12.dp))
+            TextButton(
                 onClick = {
                     loginScreenModel.setEvent(
                         LoginActivity.Event.OnRegisterClick
                     )
                 },
+                modifier = Modifier.align(Alignment.CenterHorizontally)
             ) {
                 Text("I don't have an account!")
             }
